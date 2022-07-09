@@ -6,9 +6,10 @@ router.get('/redirect', passport.authenticate('discord', {
     failureRedirect: '/forbidden',
     successRedirect: '/dashboard'
 }));
+
 router.get('/logout', (req, res) => {
     if(req.user) {
-        req.logout();
+        req.session.destroy();
         res.redirect('/');
     } else {
         res.redirect('/');
